@@ -1,0 +1,27 @@
+def metrics(retrieved, relevant):
+    tp = len(retrieved & relevant)
+    fp = len(retrieved - relevant)
+    fn = len(relevant - retrieved)
+
+    precision = tp/(tp+fp)
+    recall = tp/(tp+fn)
+    f1 = 2*precision*recall/(precision+recall)
+
+    print("TP:",tp,"FP:",fp,"FN:",fn)
+    print("Precision:",precision)
+    print("Recall:",recall)
+    print("F-measure:",f1)
+
+retrieved = {"doc1","doc2","doc3"}
+relevant = {"doc1","doc4"}
+
+metrics(retrieved,relevant)
+
+from sklearn.metrics import average_precision_score
+
+y_true = [0,1,1,0,1,1]
+y_scores = [0.1,0.4,0.35,0.8,0.65,0.9]
+
+ap = average_precision_score(y_true, y_scores)
+
+print("Average Precision:", ap)
